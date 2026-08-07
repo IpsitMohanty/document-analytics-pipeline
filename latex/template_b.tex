@@ -1,0 +1,227 @@
+\documentclass[a4paper,10pt]{article}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% === Packages ===
+\usepackage[left=0.65in, right=0.65in, top=0.45in, bottom=0.45in]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontspec}
+\newfontfamily\datefont{Latin Modern Roman}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{needspace}
+
+% === Font ===
+\setmainfont{Inconsolata}
+
+% === Spacing ===
+\linespread{0.88}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{16pt}
+\setlength{\multicolsep}{2pt}
+
+\setlist[itemize]{
+  leftmargin=*,
+  itemsep=1pt,
+  topsep=1.5pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+% === Section styling ===
+\definecolor{sectioncolor}{RGB}{40,70,140}
+\titleformat{\section}
+  {\large\bfseries\color{sectioncolor}}
+  {}
+  {0em}
+  {}
+  [\titlerule]
+
+\titlespacing*{\section}{0pt}{3pt}{1.5pt}
+
+% === Hyperref ===
+\hypersetup{
+  colorlinks=true,
+  urlcolor=sectioncolor,
+  linkcolor=sectioncolor
+}
+
+% === Header/Footer ===
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\sloppy
+
+% === HEADER ===
+\begin{center}
+  {\Huge Ipsit Mohanty} \\[2mm]
+  {\Large Program Management \& Consulting | Public Sector, Data \& Analytics} \\[1mm]
+  {\small \textit{Program Delivery • Policy \& Governance Consulting • Data Systems • Monitoring \& Evaluation • Stakeholder Management}} \\[1.5mm]
+  \faEnvelope~\href{mailto:ipsit13@gmail.com}{ipsit13@gmail.com} \quad
+  \faPhone~8433904389 \quad
+  \faLinkedin~\href{%%TRACKER_LI%%}{LinkedIn} \quad
+  \faGithub~\href{%%TRACKER_GH%%}{GitHub}
+\end{center}
+\noindent\rule{\textwidth}{0.2pt}
+
+% === SUMMARY ===
+\section*{Summary}
+Program management and consulting professional with 6+ years delivering large-scale, multi-stakeholder programs across nutrition, education, tribal development, and urban governance. Most recently served as the central-to-state technical and data interface for a national program spanning 72,000+ operational units across 30 districts, supporting the state administration on diagnostics, monitoring, analysis, and central-to-state systems integration. Work spans program design and monitoring, strategy and policy analysis, budget and fund-utilisation analytics, grievance-resolution systems, and executive reporting. Also builds the underlying data systems, including the ETL pipelines, analytical warehouses, and dashboards linked below.
+
+% === EXPERIENCE ===
+\section*{Experience}
+
+% --- DIC ---
+{\large\textbf{Digital India Corporation (NeGD), MeitY}} \\
+\textit{State Coordinator | Poshan Tracker, Odisha} \hfill {\datefont\small Aug 2025 - Jun 2026}
+
+\begin{itemize}
+\item Served as the technical and data interface between the central program office (MeitY) and the Odisha state administration for a national nutrition program (Poshan Tracker) across 72,000+ Anganwadi centres and 30 districts: diagnostics, issue coordination, and testing support.
+\item Supported statewide monthly data-quality cycles: anomaly surveillance, month-on-month drift monitoring, and escalation and resolution of reporting issues with district teams.
+\item Built the reporting and analytics layer for the monthly review cycle: ETL pipelines, an analytical warehouse, and dashboards, reducing manual reconciliation effort in preparing state and district-level reporting.
+\item Worked on integrating the central application with state-built applications, and supported implementation and adoption across field operations through troubleshooting and training inputs.
+\end{itemize}
+
+\vspace{1pt}
+
+% --- Piramal ---
+\needspace{6\baselineskip}
+\noindent\rule{\textwidth}{0.15pt}
+{\large\textbf{Office of the Hon. Minister, Govt. of Odisha}} \\
+\textit{Program Manager | Policy Analytics \& Systems Integration} \hfill {\datefont\small Dec 2024 - Aug 2025} \\
+{\small \textit{Supported by Piramal Foundation; education, tribal development, and social-welfare portfolios}}
+
+\begin{itemize}
+\item Delivered analytics-backed planning inputs for the education sector under the National Education Policy: dropout prediction (clustering and time-series methods on national enrolment data), learning-outcome root-cause analysis, and absenteeism and staffing-gap mapping.
+\item Drafted strategy briefs on education-policy implementation and model-school integration, presented to senior leadership; ran financial analytics for budget planning and fund-utilisation tracking on a major education program.
+\item Designed and built a public grievance-resolution workflow end-to-end (Flask/FastAPI): automated classification, resolution tracking, and executive reporting.
+\item Coordinated across department leadership, partner-foundation teams, and district administrators to institutionalise data-driven planning and review processes.
+\end{itemize}
+
+\vspace{1pt}
+
+% --- STSC ---
+\needspace{6\baselineskip}
+\noindent\rule{\textwidth}{0.15pt}
+{\large\textbf{ST \& SC Development Dept., Govt. of Odisha}} \\
+\textit{Consultant | Policy \& Governance Monitoring} \hfill {\datefont\small Apr 2023 - Nov 2024}
+
+\begin{itemize}
+\item Built monitoring and analytics for multi-district infrastructure projects: fund-disbursement tracking, milestone adherence, and automated governance-efficiency reporting for district administrations.
+\item Prioritised high-need intervention zones for welfare and livelihood programs using clustering-based analysis, supporting equitable fund distribution.
+\item Developed budget forecasting models (ARIMA, Prophet, regression trend analysis) to support resource planning in program reviews.
+\item Conducted policy reviews and NLP-based analysis of documentation, grievances, and stakeholder consultations, supporting entitlement and land-rights processes.
+\end{itemize}
+
+\vspace{1pt}
+
+% --- PHDMA ---
+\needspace{6\baselineskip}
+\noindent\rule{\textwidth}{0.15pt}
+{\large\textbf{Poverty \& Human Development Monitoring Agency, Planning \& Convergence Dept., Govt. of Odisha}} \\
+\textit{Young Professional | Governance \& Data Analytics} \hfill {\datefont\small Dec 2020 - Mar 2023}
+
+\begin{itemize}
+\item Built impact-evaluation models (gradient boosting) assessing program delivery across six sector portfolios (agriculture, education, fisheries, revenue, home, and women's economic empowerment), informing fund-allocation reviews.
+\item Automated variance tracking in financial disbursements, reducing manual reconciliation effort, and designed an anomaly-detection framework for early identification of irregularities in fund distribution.
+\item Led sentiment analysis of citizen feedback at scale, supporting responsiveness under state governance and service-delivery initiatives.
+\end{itemize}
+
+\vspace{1pt}
+
+% --- IIHS ---
+\needspace{6\baselineskip}
+\noindent\rule{\textwidth}{0.15pt}
+{\large\textbf{Indian Institute for Human Settlements (IIHS), Bangalore}} \\
+\textit{Urban Fellow | Data-Driven Social Impact (TNUSSP)} \hfill {\datefont\small Jun 2019 - Aug 2020}
+\begin{itemize}
+\item Conducted benchmarking across municipal wards in Trichy for the Tamil Nadu Urban Sanitation Support Programme, evaluating digital-tool adoption among community groups and identifying systemic adoption barriers.
+\end{itemize}
+
+% === SKILLS ===
+\section*{Skills \& Methodologies}
+
+\begin{multicols}{2}
+\raggedright
+
+\textbf{Program \& Delivery}
+\begin{itemize}
+\item Monitoring \& evaluation, KPI design, review cadences
+\item Adoption and change management for data systems in operations
+\item Strategy, policy analysis, and executive reporting
+\end{itemize}
+
+\textbf{Analytics \& Reporting}
+\begin{itemize}
+\item Power BI, Streamlit dashboards, automated reporting (PPT/PDF), BI extracts
+\item Financial and budget analytics: variance, forecasting, utilisation
+\item Data quality, anomaly surveillance, reconciliation at scale
+\end{itemize}
+
+\columnbreak
+
+\textbf{Technical (hands-on)}
+\begin{itemize}
+\item Python ETL pipelines, SQL (MySQL/PostgreSQL), analytical warehousing
+\item ML: forecasting, clustering, anomaly detection, NLP analytics
+\item FastAPI/Flask services, Git, CI/CD, deployed cloud systems
+\end{itemize}
+
+\textbf{Domain}
+\begin{itemize}
+\item Nutrition \& health, education, tribal development, urban governance; large-scale operational data ecosystems
+\end{itemize}
+
+\end{multicols}
+
+% === PROJECTS ===
+\section*{Selected Systems Built \& Shipped}
+
+\noindent{\small Independently built at \textbf{\href{%%TRACKER_GH%%}{github.com/IpsitMohanty}}: each system starts from a problem observed in programme operations.}\\[0.5mm]
+
+\begin{itemize}[itemsep=2pt]
+\item \textbf{\href{%%TRACKER_REPO_POSHAN%%}{Poshan Intelligence Pipeline}:} End-to-end data platform with 12 ETL modules for distinct report types, a district-level analytics cube, and RandomForest models predicting low-birth-weight and stunting rates, served via FastAPI. Dockerised, with CI (pytest, flake8, mypy).
+\item \textbf{\href{%%TRACKER_REPO_AWC%%}{AWC Operations Dashboard}:} Operations analytics platform with staging-to-fact-table design, anomaly/risk/alert scoring, and schema-drift detection across monthly exports; dual-backend Streamlit app deployed on Streamlit Community Cloud with managed PostgreSQL (Neon). Runs on synthetic data modelled on public nutrition-program reporting formats. \href{%%TRACKER_DEMO_AWC%%}{Live demo}.
+\item \textbf{\href{%%TRACKER_REPO_REC%%}{Course Recommender System}:} Built and evaluated nine recommendation approaches under a common interface, with a reproducible held-out evaluation and a 63-test suite; deployed as an interactive Streamlit app. The analysis surfaces an honest result, with only a clustering approach outperforming a simple popularity baseline. \href{%%TRACKER_DEMO_REC%%}{Live demo}.
+\item \textbf{\href{%%TRACKER_REPO_RAG%%}{RAG Ingestion Evaluation}:} A document question-answering pipeline over public nutrition-programme documentation (app FAQs and scheme guidelines), with a structured evaluation of retrieval quality. Key finding: the system's confidence scores cannot reliably distinguish a correct answer from nothing relevant, a practical limitation for any deployed RAG assistant. Tested, deployed, with a \href{%%TRACKER_DEMO_RAG%%}{live demo}.
+\end{itemize}
+
+% === CERTIFICATIONS ===
+\section*{Certifications, Affiliations \& Languages}
+
+\begin{itemize}[itemsep=1pt]
+\item IBM Professional Certificates (2024-2025): AI Engineering, Generative AI Engineering with LLMs, Machine Learning, Data Science, Applied DevOps Engineering
+\item Google Cloud skill badges (2025-2026): BigQuery ML, data warehousing, streaming analytics, Dataplex, ML APIs, Kubernetes; Member, Google Cloud Innovators Program
+\item Languages: English, Hindi, Odia
+\end{itemize}
+
+% === EDUCATION ===
+\section*{Education}
+
+\renewcommand{\arraystretch}{0.95}
+\begin{tabularx}{\textwidth}{X r}
+
+\textbf{International Institute of Information Technology, Bangalore} \newline Executive Diploma in Machine Learning \& AI
+& {\datefont\small Mar 2026-Present} \\[1mm]
+
+\textbf{Indian Institute for Human Settlements, Bangalore} \newline Urban Fellows Programme
+& {\datefont\small 2019-2020} \\[1mm]
+
+\textbf{Tata Institute of Social Sciences, Mumbai} \newline Master's in Disaster Management
+& {\datefont\small 2017-2019} \\[1mm]
+
+\textbf{Indira Gandhi National Open University, New Delhi} \newline BA (Major) Psychology
+& {\datefont\small 2013-2016} \\
+
+\end{tabularx}
+
+\end{document}

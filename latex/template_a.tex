@@ -1,0 +1,226 @@
+\documentclass[a4paper,10pt]{article}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% === Packages ===
+\usepackage[left=0.7in, right=0.7in, top=0.3in, bottom=0.3in]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontspec}
+\newfontfamily\datefont{Latin Modern Roman}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+
+% === Font ===
+\setmainfont{Inconsolata}
+
+% === Spacing ===
+\linespread{0.90}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{16pt}
+\setlength{\multicolsep}{2pt}
+
+\setlist[itemize]{
+  leftmargin=*,
+  itemsep=1.5pt,
+  topsep=2pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+% === Section styling ===
+\definecolor{sectioncolor}{RGB}{40,70,140}
+\titleformat{\section}
+  {\large\bfseries\color{sectioncolor}}
+  {}
+  {0em}
+  {}
+  [\titlerule]
+
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+
+% === Hyperref ===
+\hypersetup{
+  colorlinks=true,
+  urlcolor=sectioncolor,
+  linkcolor=sectioncolor
+}
+
+% === Header/Footer ===
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\sloppy
+
+% === HEADER ===
+\begin{center}
+  {\Huge Ipsit Mohanty} \\[2.5mm]
+  {\Large Data \& ML Engineer} \\[1mm]
+  {\small \textit{Python • ETL Pipelines • Analytical Warehousing • Machine Learning • FastAPI • GenAI (RAG)}} \\[2mm]
+  \faEnvelope~\href{mailto:ipsit13@gmail.com}{ipsit13@gmail.com} \quad
+  \faPhone~8433904389 \quad
+  \faLinkedin~\href{%%TRACKER_LI%%}{LinkedIn} \quad
+  \faGithub~\href{%%TRACKER_GH%%}{GitHub}
+\end{center}
+\noindent\rule{\textwidth}{0.2pt}
+
+% === SUMMARY ===
+\section*{Summary}
+Data and ML engineer with 6+ years building ETL pipelines, analytical warehouses, and machine
+learning systems on large-scale government and operational datasets spanning 70,000+ entities. Ships
+end-to-end: ingestion, validation, and schema design through models, FastAPI services, dashboards,
+and automated reporting. Recent hands-on work spans deep learning (CNN and vision-transformer
+architectures in Keras and PyTorch) and GenAI (retrieval-augmented assistants with vector search
+and guarded LLM fallback). Focused on reproducible data engineering, applied machine learning, and
+operational decision-support systems.
+
+% === EXPERIENCE ===
+\section*{Experience}
+
+% --- DIC ---
+{\large\textbf{Digital India Corporation (NeGD), MeitY}} \\
+\textit{State Coordinator - Data Systems \& Analytics | Poshan Tracker, Odisha} \hfill {\datefont\small Aug 2025 - Jun 2026}
+
+\begin{itemize}
+\item Engineered Python ETL pipelines for ingestion, cleaning, reconciliation, and analytics cube generation across 72,000+ Anganwadi centres in 30 districts, covering registration, supplementary nutrition, growth monitoring and health indicators for children under six and pregnant and lactating mothers.
+\item Designed analytical warehouses (DuckDB/SQLite OLAP stores) with schema harmonisation across changing monthly export formats, anomaly and risk scoring, and month-on-month drift detection, replacing manual district-level reconciliation with automated validation layers.
+\item Built the operational monitoring dashboard used in the monthly state review cycle, surfacing coverage, measurement-efficiency and nutrition indicators at state, district and centre level alongside anomaly and risk surveillance. A synthetic-data reconstruction is published as \href{%%TRACKER_REPO_AWC%%}{AWC Operations Dashboard}.
+\item Built a RAG FAQ assistant for operational query resolution: deterministic FAQ matching, vector search, acronym expansion, and guarded LLM fallback with iteratively tuned prompt templates.
+\item Designed FastAPI services exposing regional insights and cube access as structured analytical responses; automated PPT/PDF reporting and BI-ready extracts for state and district programme officers.
+\item Acted as the technical interface between central and state teams, supporting implementation, troubleshooting, and adoption of data systems across distributed field operations.
+\end{itemize}
+
+\vspace{1pt}
+
+% --- Piramal ---
+\noindent\rule{\textwidth}{0.15pt}
+{\large\textbf{Office of the Hon. Minister, Govt. of Odisha}} \\
+\textit{Program Manager | Policy Analytics \& Systems Integration} \hfill {\datefont\small Dec 2024 - Aug 2025} \\
+{\small \textit{Supported by Piramal Foundation}}
+
+\begin{itemize}
+\item Built dropout-risk analysis on UDISE+ national school enrolment data, combining clustering of school-level indicators with time-series trend analysis to support education-sector planning inputs under the National Education Policy.
+\item Ran root-cause analytics on learning outcomes, dropout clusters, absenteeism, and teacher-deficit mapping; findings fed strategy briefs presented to department leadership.
+\item Designed and built a public grievance workflow end-to-end (Flask/FastAPI): automated classification, resolution tracking, and executive reporting.
+\item Implemented financial analytics for variance analysis, forecasting, and budget-utilisation monitoring on a major state education programme.
+\end{itemize}
+
+\vspace{1pt}
+
+% --- STSC ---
+\noindent\rule{\textwidth}{0.15pt}
+{\large\textbf{ST \& SC Development Dept., Govt. of Odisha}} \\
+\textit{Consultant | Analytics \& Governance Monitoring} \hfill {\datefont\small Apr 2023 - Nov 2024}
+
+\begin{itemize}
+\item Built the monitoring dashboard tracking 6,000+ cultural-infrastructure projects across 30 districts: fund disbursement, milestone adherence, and physical-progress reporting for district administrations.
+\item Designed fund-flow analytics linking physical progress to allocation patterns, surfacing where projects were stalling and which bottlenecks were driving it, so remedial action could be targeted.
+\item Applied clustering to prioritise high-need intervention zones, feeding district allocation reviews over a programme that expanded from 8 to 14 districts during the engagement.
+\item Developed forecasting models (ARIMA, Prophet, regression trend analysis) for resource planning inputs in programme review cycles.
+\end{itemize}
+
+\vspace{1pt}
+
+% --- PHDMA ---
+\noindent\rule{\textwidth}{0.15pt}
+{\large\textbf{Planning \& Convergence Dept., Govt. of Odisha}} \\
+\textit{Young Professional | Governance \& Data Analytics} \hfill {\datefont\small Dec 2020 - Mar 2023}
+
+\begin{itemize}
+\item Built impact-evaluation models (gradient boosting) assessing programme delivery across six departments (agriculture, education, fisheries, revenue, home, and women's economic empowerment), reconciling field reporting from separately-executed programmes into comparable measures for fund-allocation reviews.
+\item Automated variance tracking in financial disbursements, replacing manual reconciliation, and designed an anomaly-detection approach for early identification of irregularities in fund distribution.
+\item Led sentiment analysis of citizen feedback at scale, supporting responsiveness under state governance and service-delivery initiatives.
+\end{itemize}
+
+% === SKILLS ===
+\section*{Skills \& Methodologies}
+
+\begin{multicols}{2}
+\raggedright
+
+\textbf{Data Engineering \& Analytics}
+\begin{itemize}
+\item ETL/ELT pipelines, schema design, validation, analytical warehousing
+\item MySQL, PostgreSQL, DuckDB, SQLite, Apache Spark, Pandas, NumPy
+\item Streamlit, Power BI, automated reporting
+\end{itemize}
+
+\textbf{Machine Learning}
+\begin{itemize}
+\item Supervised and unsupervised ML, feature engineering
+\item Deep learning: CNNs, vision transformers, transfer learning, ONNX
+\item Forecasting (ARIMA, Prophet, LSTM), anomaly detection; Scikit-learn, TensorFlow/Keras, PyTorch
+\end{itemize}
+
+\columnbreak
+
+\textbf{Cloud, Backend \& MLOps}
+\begin{itemize}
+\item Google Cloud: BigQuery, BigQuery ML, Dataplex, GKE
+\item FastAPI, Flask, REST services; Docker, Git, CI/CD (GitHub Actions), pytest, Linux
+\item MLflow, DVC, experiment tracking
+\end{itemize}
+
+\textbf{GenAI}
+\begin{itemize}
+\item RAG pipelines, vector search, embeddings
+\item Chroma, Sentence Transformers, Ollama
+\item Prompt engineering, guarded LLM fallback design
+\end{itemize}
+
+\end{multicols}
+
+% === PROJECTS ===
+\section*{Selected Projects}
+
+\noindent{\small All repositories at \textbf{\href{%%TRACKER_GH%%}{github.com/IpsitMohanty}}: tested, documented, CI where noted; live demo linked.}\\[1mm]
+
+\begin{itemize}[itemsep=0pt]
+\item \textbf{\href{%%TRACKER_REPO_CNN%%}{Satellite Land Classification (CNN \& CNN-ViT)}:} Deep-learning pipeline built twice, in Keras and PyTorch, spanning data loading, CNN classifiers, and CNN-ViT hybrids via transfer learning, reproduced locally on CPU. A four-experiment controlled ablation isolated a Keras/PyTorch BatchNorm momentum convention mismatch (0.99 vs 0.1, same parameter name) as the root cause of a 70\% to 98.7\% accuracy gap between otherwise identical models; the hybrid was shown not to earn its complexity (0.58pp lower accuracy at 2x parameters, 2.6x training time). pytest suite (55 tests), CI, ONNX-backed \href{%%TRACKER_DEMO_CNN%%}{live demo}.
+\item \textbf{\href{%%TRACKER_REPO_RAG%%}{RAG Ingestion Evaluation}:} LangChain retrieval pipeline over a deliberately heterogeneous corpus (app FAQ pairs and a nutrition-scheme policy PDF), methodology fixed before any run. A 51-query evaluation across 24 ingestion/chunking/retriever configurations found that similarity distances cannot serve as a confidence gate: unanswerable-query scores overlap answerable ones in every configuration, so no threshold separates good retrieval from bad. A follow-up arm added an LLM abstention judge on LangGraph, testing whether a content-based judge can gate what the score cannot, prediction pre-registered. Extended into a single-agent corrective RAG loop (LangGraph): self-graded retrieval, corrective re-retrieval, and faithfulness-checked generation with abstention; a 545-call evaluation vs.\ the non-agentic baseline rescued failures it structurally could not (0 to 41.7\% recall on hardest queries), zero fabrication, negatives reported openly. Local embeddings, no API key. pytest suite (168 tests), CI, \href{%%TRACKER_DEMO_RAG%%}{live demo}.
+\item \textbf{\href{%%TRACKER_REPO_REC%%}{Course Recommender System}:} Comparative study of nine recommendation approaches (content-based, collaborative filtering, neural embeddings) on a 34K-user dataset, unified under a common \texttt{Recommender} interface and evaluated on a reproducible, seeded held-out ranking protocol (Precision@k / Recall@k). pytest suite (63 tests); deployed as an interactive Streamlit app. Evaluation surfaces an honest result, with only a clustering model beating a popularity baseline: \href{%%TRACKER_DEMO_REC%%}{live demo}.
+\item \textbf{\href{%%TRACKER_REPO_POSHAN%%}{Poshan Intelligence Pipeline}:} End-to-end data platform with 12 ETL modules for distinct government report types, a district-level analytics cube, and RandomForest models predicting low-birth-weight and stunting rates, served via FastAPI. Dockerised, with GitHub Actions CI running pytest (29 tests), flake8, and mypy.
+\item \textbf{\href{%%TRACKER_REPO_AWC%%}{AWC Operations Dashboard}:} Data mart with staging-to-fact-table design, anomaly/risk/alert scoring layers, schema-drift detection across monthly exports, and a dual-backend Streamlit dashboard (PostgreSQL/SQLite) built on population-weighted rate calculations. Runs on a synthetic generator with injected ground-truth anomalies, with detection recall reported openly. Deployed with managed PostgreSQL (Neon): \href{%%TRACKER_DEMO_AWC%%}{live demo}.
+\end{itemize}
+
+% === CERTIFICATIONS ===
+\section*{Certifications \& Affiliations}
+
+\begin{itemize}[itemsep=1pt]
+\item IBM Professional Certificates (2024-2025): AI Engineering, Generative AI Engineering with LLMs, Machine Learning, Data Science, Applied DevOps Engineering
+\item Google Cloud skill badges (2025-2026): BigQuery ML, BigQuery warehousing and streaming analytics, Dataplex, ML APIs, GKE; Member, Google Cloud Innovators Program
+\end{itemize}
+
+% === EDUCATION ===
+\section*{Education}
+
+\renewcommand{\arraystretch}{0.9}
+\begin{tabularx}{\textwidth}{X r}
+
+\textbf{International Institute of Information Technology, Bangalore}
+& {\datefont\small Mar 2026-Present} \\
+Executive Diploma in Machine Learning \& AI \\
+
+\textbf{Indian Institute for Human Settlements, Bangalore}
+& {\datefont\small 2019-2020} \\
+Urban Fellows Programme \\
+
+\textbf{Tata Institute of Social Sciences, Mumbai}
+& {\datefont\small 2017-2019} \\
+Master's in Disaster Management \\
+
+\textbf{Indira Gandhi National Open University, New Delhi}
+& {\datefont\small 2013-2016} \\
+BA (Major) Psychology \\
+
+\end{tabularx}
+
+\end{document}

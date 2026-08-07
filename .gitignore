@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local SQLite DB (PostgreSQL is used in production)
+data/*.db
+
+# Generated per-recipient documents and the source PDF (place manually, not committed)
+data/*.pdf
+latex/output/
+
+.env
+.DS_Store
