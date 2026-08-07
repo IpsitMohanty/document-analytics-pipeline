@@ -1,9 +1,15 @@
 # Document Analytics Pipeline
 
 A per-recipient document distribution and analytics system: every link inside a distributed
-PDF routes through a tracking layer that attributes each open and click to the specific
-recipient it was sent to, and to the organisation behind the visiting IP — turning a static
-document into an instrumented one.
+PDF routes through an analytics layer that provides delivery confirmation and engagement data
+per recipient, including the organisation behind the visiting IP — turning a static document
+into an instrumented one.
+
+**Not LaTeX-specific.** This implementation uses LaTeX to generate the source document, but
+the tracking layer itself is format-agnostic — it works with any document format that
+supports embedded hyperlinks (a templated Word doc, an HTML-to-PDF pipeline, etc.). The
+redirect router and token system don't care how the PDF was produced; LaTeX is simply what
+this implementation uses.
 
 ## What it does
 
@@ -20,32 +26,20 @@ document into an instrumented one.
   "email open" pixel can't tell you.
 - **Private audit dashboard.** A password-gated Streamlit app for reviewing the full event
   log: per-recipient summaries, org/IP filters, a hit timeline, and a token generator. Not
-  public-facing by design — it exposes who looked at what, from where.
-- **LaTeX document pipeline with placeholder substitution.** The source document is a LaTeX
-  template with `%%TRACKER_*%%` placeholders in place of every link. A generator script
-  substitutes each placeholder with that recipient's tracked URL and compiles a versioned
-  PDF, so the tracking layer never has to touch the document's actual content or design.
-
-## Key empirical finding
-
-Running this against a set of real applications surfaced a consistent, detectable pattern:
-**LinkedIn's crawler (`AS8075`, Microsoft Corporation — geolocated to Dulles Town Center)
-systematically follows every embedded link in an uploaded PDF within seconds of upload.**
-It shows up in the event log as a single token generating hits across nearly every tracked
-slug in immediate succession, from an org attribution that's obviously automated rather
-than human — a fingerprint that's straightforward to distinguish from a real recruiter or
-hiring manager opening the same document once IP-to-org attribution is in place.
+  public-facing by design — shows delivery confirmation and engagement by recipient.
+- **Templated document generation with placeholder substitution.** The source document (LaTeX
+  in this implementation) has `%%TRACKER_*%%` placeholders in place of every link. A generator
+  script substitutes each placeholder with that recipient's tracked URL and compiles a
+  versioned PDF, so the tracking layer never has to touch the document's actual content or
+  design.
 
 ## Stack
 
 - **FastAPI** — redirect router, document serving, landing page
 - **PostgreSQL** — event log and recipient store
 - **Streamlit** — private audit dashboard
-- **LaTeX** (XeLaTeX) — templated document generation with per-recipient token injection.
-  LaTeX is what this instance uses for template generation; any document format that
-  supports embedded hyperlinks (e.g. a templated Word or HTML-to-PDF pipeline) is
-  compatible with the same tracking layer — the redirect router and token system don't
-  care how the PDF was produced.
+- **LaTeX** (XeLaTeX) — this implementation's document templating engine; see the note above
+  on why it isn't a hard requirement of the system itself
 
 ## How it works
 
@@ -53,7 +47,7 @@ hiring manager opening the same document once IP-to-org attribution is in place.
 generate_document.py --recipient "Acme Corp" --auto-token
         │
         ▼
-  LaTeX template (%%TRACKER_*%% placeholders)
+  document template (%%TRACKER_*%% placeholders)
         │  substitute every placeholder with /r/{slug}?t={token}
         ▼
   compiled, recipient-specific PDF
@@ -70,7 +64,7 @@ generate_document.py --recipient "Acme Corp" --auto-token
 ```
 api/            FastAPI app — redirect router, document serving, landing page, IP attribution
 dashboard/      Streamlit audit dashboard (password-gated)
-latex/          LaTeX templates and the recipient/token document generator
+latex/          Document templates and the recipient/token document generator
 ```
 
 ## Local development
@@ -108,7 +102,7 @@ if it isn't available, the generator still writes the substituted `.tex` for a m
 
 - Every distributed link routes through the redirect layer — never a direct URL — so every
   open and click is attributable back to a specific recipient and token.
-- The audit dashboard is intentionally private: it surfaces exactly who opened a document
-  and from where, which is not information to expose publicly.
+- The audit dashboard is intentionally private: it surfaces delivery and engagement data per
+  recipient, which isn't information to expose publicly.
 - IP attribution runs on `ipinfo.io`'s free, keyless tier — sufficient volume for
   per-recipient document tracking without any API key management.
