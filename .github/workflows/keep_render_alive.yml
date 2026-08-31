@@ -2,12 +2,60 @@ name: Keep Render Alive
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    # Every 5 minutes. Render's free tier sleeps a service after ~15 min
+    # idle; GitHub Actions gives no timing guarantee on scheduled triggers
+    # and can delay/drop runs under load, so a single missed tick still
+    # leaves ~10 min of margin instead of nearly closing the gap.
+    - cron: "*/5 * * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: Ping Render
         run: curl -s https://ipsit-links.onrender.com > /dev/null
+
+      # GitHub auto-disables scheduled workflows on a repo with no commit
+      # activity for 60 days. This workflow otherwise commits nothing, so it
+      # could silently switch itself off - the suspected root cause of the
+      # observed cold-start despite the ping running on schedule. Fix: touch
+      # a timestamp file, but only commit it when it's actually gone stale
+      # (>=7 days) rather than on every run, to avoid commit spam. Runs via
+      # `always()` so it still keeps the repo active even if the ping step
+      # fails.
+      - name: Refresh keepalive timestamp (weekly, prevents 60-day auto-disable)
+        id: keepalive
+        if: always()
+        run: |
+          mkdir -p .github
+          FILE=.github/last-keepalive
+          NOW_EPOCH=$(date -u +%s)
+          if [ -f "$FILE" ]; then
+            LAST=$(cat "$FILE")
+            LAST_EPOCH=$(date -u -d "$LAST" +%s 2>/dev/null || echo 0)
+          else
+            LAST_EPOCH=0
+          fi
+          DIFF_DAYS=$(( (NOW_EPOCH - LAST_EPOCH) / 86400 ))
+          echo "days since last keepalive commit: $DIFF_DAYS"
+          if [ "$DIFF_DAYS" -ge 7 ]; then
+            date -u +%Y-%m-%dT%H:%M:%SZ > "$FILE"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit keepalive timestamp
+        if: steps.keepalive.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/last-keepalive
+          git commit -m "chore: weekly keepalive commit to prevent Actions auto-disable [skip ci]"
+          git push
